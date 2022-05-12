@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
+import { UserRole } from 'consts/role.enum';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from 'typeorm';
 
-import { Role } from './types';
 import UserProfile from './UserProfile';
 
 @Entity()
@@ -24,7 +24,7 @@ export default class User {
   password!: string;
 
   @Column({
-    default: 'USER' as Role,
+    default: 'USER' as UserRole,
     length: 30,
   })
   role: string;

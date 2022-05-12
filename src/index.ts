@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser';
+import { UserRole } from 'consts/role.enum';
 import cors from 'cors';
 import express from 'express';
 
 import { AppDataSource } from './data-source';
-import { Role } from './entity/types';
 import User from './entity/User';
 import UserProfile from './entity/UserProfile';
 import { errorHandler } from './middleware/errorHandler';
@@ -30,7 +30,7 @@ AppDataSource.initialize()
     newUser.hashPassword();
     newUser.phone = '18600559456';
     newUser.username = 'admin';
-    newUser.role = 'ADMINISTRATOR' as Role;
+    newUser.role = 'ADMINISTRATOR' as UserRole;
     await AppDataSource.manager.save(newUser);
 
     const profile = new UserProfile();

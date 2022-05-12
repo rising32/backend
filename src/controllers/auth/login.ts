@@ -1,7 +1,7 @@
+import { UserRole } from 'consts/role.enum';
 import { Request, Response, NextFunction } from 'express';
 
 import { AppDataSource } from '../../data-source';
-import { Role } from '../../entity/types';
 import User from '../../entity/User';
 import { JwtPayload } from '../../types/JwtPayload';
 import { createJwtToken } from '../../utils/createJwtToken';
@@ -28,7 +28,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       id: user.id,
       name: user.username,
       email: user.email,
-      role: user.role as Role,
+      role: user.role as UserRole,
       created_at: user.created_at,
     };
 

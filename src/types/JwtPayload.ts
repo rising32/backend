@@ -1,9 +1,9 @@
-import { Role } from '../entity/types';
+import { UserRole } from 'consts/role.enum';
 
 export type JwtPayload = {
   id: string;
   name: string;
   email: string;
-  role: Role;
+  role: UserRole;
   created_at: Date;
 };
