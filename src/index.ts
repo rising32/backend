@@ -1,8 +1,7 @@
-import bodyParser from 'body-parser';
 import { UserRole } from 'consts/role.enum';
 import cors from 'cors';
 import express from 'express';
-
+import bodyParser from 'body-parser';
 import { AppDataSource } from './data-source';
 import User from './entity/User';
 import UserProfile from './entity/UserProfile';

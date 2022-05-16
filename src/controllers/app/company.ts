@@ -9,12 +9,6 @@ export const createCompany = async (req: Request, res: Response, next: NextFunct
   const companyRepository = AppDataSource.getRepository(Company);
   try {
     const company = await companyRepository.findOneBy({ name });
-    // const companies = await AppDataSource.getRepository(Company)
-    //   .createQueryBuilder('company')
-    //   .leftJoinAndSelect('company.clients', 'client')
-    //   .getMany();
-
-    // console.log(companies);
 
     if (company) {
       const customError = new CustomError(400, 'General', 'Company already exists', [

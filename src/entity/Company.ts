@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  UpdateDateColumn,
+  CreateDateColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import Client from './Client';
 
 @Entity()
@@ -12,7 +20,7 @@ export default class Company {
   @Column({ length: 255, nullable: true, type: 'varchar' })
   thumbnail!: string | null;
 
-  @OneToMany((type) => Client, (client) => client.company)
+  @ManyToMany(() => Client, (client) => client.companies)
   clients: Client[];
 
   @Column('timestampz')

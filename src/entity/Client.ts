@@ -1,3 +1,4 @@
+import { AppDataSource } from 'data-source';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,6 +7,9 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
+  BeforeInsert,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import Company from './Company';
 
@@ -20,12 +24,9 @@ export default class Client {
   @Column({ length: 255, nullable: true, type: 'varchar' })
   thumbnail!: string | null;
 
-  @Column('uuid')
-  fk_company_id!: string;
-
-  @ManyToOne((type) => Company, (company) => company.clients)
-  @JoinColumn({ name: 'fk_company_id' })
-  company!: Company;
+  @ManyToMany((type) => Company, (company) => company.clients)
+  @JoinTable({ name: 'client_companies' })
+  companies!: Company[];
 
   @Column('timestampz')
   @CreateDateColumn()
@@ -34,4 +35,8 @@ export default class Client {
   @Column('timestamptz')
   @UpdateDateColumn()
   updated_at!: Date;
+
+  static findByName(id: string) {
+    return AppDataSource.getRepository(Client).createQueryBuilder('client').where('client.id = :id', { id }).getOne();
+  }
 }
