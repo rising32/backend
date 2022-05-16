@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToOne } from 'typeorm';
-
-import AdminUser from './AdminUser';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  UpdateDateColumn,
+  CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import Company from './Company';
 
 @Entity()
 export default class Client {
@@ -12,6 +19,13 @@ export default class Client {
 
   @Column({ length: 255, nullable: true, type: 'varchar' })
   thumbnail!: string | null;
+
+  @Column('uuid')
+  fk_company_id!: string;
+
+  @ManyToOne((type) => Company, (company) => company.clients)
+  @JoinColumn({ name: 'fk_company_id' })
+  company!: Company;
 
   @Column('timestampz')
   @CreateDateColumn()

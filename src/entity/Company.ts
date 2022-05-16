@@ -1,15 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
+import Client from './Client';
 
 @Entity()
 export default class Company {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ length: 255 })
+  @Column({ unique: true, length: 255 })
   name!: string;
 
   @Column({ length: 255, nullable: true, type: 'varchar' })
   thumbnail!: string | null;
+
+  @OneToMany((type) => Client, (client) => client.company)
+  clients: Client[];
 
   @Column('timestampz')
   @CreateDateColumn()
