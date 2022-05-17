@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
-import { UserRole } from 'consts/role.enum';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from 'typeorm';
+import { UserRole } from '../lib/consts/role.enum';
 
 import UserProfile from './UserProfile';
 
@@ -27,7 +27,7 @@ export default class User {
     default: 'USER' as UserRole,
     length: 30,
   })
-  role: string;
+  role!: string;
 
   @Column('timestampz')
   @CreateDateColumn()

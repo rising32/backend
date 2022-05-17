@@ -1,11 +1,11 @@
-import { UserRole } from 'consts/role.enum';
 import { Request, Response, NextFunction } from 'express';
 
 import { AppDataSource } from '../../data-source';
 import User from '../../entity/User';
-import { JwtPayload } from '../../types/JwtPayload';
-import { createJwtToken } from '../../utils/createJwtToken';
-import { CustomError } from '../../utils/response/custom-error/CustomError';
+import { UserRole } from '../../lib/consts/role.enum';
+import { JwtPayload } from '../../lib/types/JwtPayload';
+import { createJwtToken } from '../../lib/utils/createJwtToken';
+import { CustomError } from '../../lib/utils/response/custom-error/CustomError';
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;

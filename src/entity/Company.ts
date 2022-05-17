@@ -21,7 +21,7 @@ export default class Company {
   thumbnail!: string | null;
 
   @ManyToMany(() => Client, (client) => client.companies)
-  clients: Client[];
+  clients!: Client[];
 
   @Column('timestampz')
   @CreateDateColumn()

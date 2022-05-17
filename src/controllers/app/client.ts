@@ -1,8 +1,8 @@
-import { AppDataSource } from 'data-source';
-import Client from 'entity/Client';
-import Company from 'entity/Company';
 import { Request, Response, NextFunction } from 'express';
-import { CustomError } from 'utils/response/custom-error/CustomError';
+import { AppDataSource } from '../../data-source';
+import Client from '../../entity/Client';
+import Company from '../../entity/Company';
+import { CustomError } from '../../lib/utils/response/custom-error/CustomError';
 
 export const createClient = async (req: Request, res: Response, next: NextFunction) => {
   const { compnay_id, name } = req.body;

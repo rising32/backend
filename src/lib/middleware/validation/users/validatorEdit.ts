@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+import { AppDataSource } from '../../../../data-source';
+import User from '../../../../entity/User';
 
-import { AppDataSource } from '../../../data-source';
-import User from '../../../entity/User';
 import { CustomError } from '../../../utils/response/custom-error/CustomError';
 import { ErrorValidation } from '../../../utils/response/custom-error/types';
 

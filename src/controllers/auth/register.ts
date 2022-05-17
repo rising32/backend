@@ -1,10 +1,10 @@
-import { UserRole } from 'consts/role.enum';
 import { Request, Response, NextFunction } from 'express';
 
 import { AppDataSource } from '../../data-source';
 import User from '../../entity/User';
 import UserProfile from '../../entity/UserProfile';
-import { CustomError } from '../../utils/response/custom-error/CustomError';
+import { UserRole } from '../../lib/consts/role.enum';
+import { CustomError } from '../../lib/utils/response/custom-error/CustomError';
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   const { email, phone, username, password } = req.body;

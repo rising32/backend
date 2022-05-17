@@ -1,4 +1,3 @@
-import { AppDataSource } from 'data-source';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,6 +10,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
+import { AppDataSource } from '../data-source';
 import Company from './Company';
 
 @Entity()

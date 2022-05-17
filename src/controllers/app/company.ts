@@ -1,7 +1,7 @@
-import { AppDataSource } from 'data-source';
-import Company from 'entity/Company';
 import { Request, Response, NextFunction } from 'express';
-import { CustomError } from 'utils/response/custom-error/CustomError';
+import { AppDataSource } from '../../data-source';
+import Company from '../../entity/Company';
+import { CustomError } from '../../lib/utils/response/custom-error/CustomError';
 
 export const createCompany = async (req: Request, res: Response, next: NextFunction) => {
   const { name } = req.body;
@@ -44,9 +44,7 @@ export const getCompanyInfoWidthID = async (req: Request, res: Response, next: N
       .getOne();
 
     if (!company) {
-      const customError = new CustomError(400, 'General', 'Company already exists', [
-        `Company '${company.name}' already exists`,
-      ]);
+      const customError = new CustomError(400, 'General', 'Company already exists', [`Company '${id}' already exists`]);
       return next(customError);
     }
 

@@ -1,4 +1,4 @@
-import { UserRole } from 'consts/role.enum';
+import { UserRole } from '../consts/role.enum';
 
 export type JwtPayload = {
   id: string;

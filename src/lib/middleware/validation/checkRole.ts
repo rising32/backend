@@ -1,5 +1,5 @@
-import { UserRole } from 'consts/role.enum';
 import { Request, Response, NextFunction } from 'express';
+import { UserRole } from '../../consts/role.enum';
 
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 
