@@ -1,8 +1,6 @@
 import bcrypt from 'bcryptjs';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { UserRole } from '../lib/consts/role.enum';
-
-import UserProfile from './UserProfile';
 
 @Entity()
 export default class User {
@@ -10,7 +8,7 @@ export default class User {
   id!: string;
 
   @Column({ length: 255 })
-  username!: string;
+  display_name!: string;
 
   @Column({ unique: true, length: 255, type: 'varchar' })
   email!: string;
@@ -29,6 +27,9 @@ export default class User {
   })
   role!: string;
 
+  @Column({ length: 255, nullable: true, type: 'varchar' })
+  thumbnail!: string | null;
+
   @Column('timestampz')
   @CreateDateColumn()
   created_at!: Date;
@@ -36,9 +37,6 @@ export default class User {
   @Column('timestamptz')
   @UpdateDateColumn()
   updated_at!: Date;
-
-  @OneToOne((type) => UserProfile, (profile) => profile.user)
-  profile!: UserProfile;
 
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);

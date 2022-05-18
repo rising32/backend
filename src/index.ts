@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 import { AppDataSource } from './data-source';
 import User from './entity/User';
 import { UserRole } from './lib/consts/role.enum';
-import UserProfile from './entity/UserProfile';
 import routes from './routes';
+import { errorHandler } from './lib/middleware/errorHandler';
 
 dotenv.config();
 
@@ -17,6 +17,7 @@ AppDataSource.initialize()
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use('/', routes);
+    app.use(errorHandler);
 
     const port = process.env.PORT;
 
@@ -33,13 +34,8 @@ AppDataSource.initialize()
     newUser.password = '123456';
     newUser.hashPassword();
     newUser.phone = '18600559450';
-    newUser.username = 'admin';
+    newUser.display_name = 'Admin User';
     newUser.role = 'ADMINISTRATOR' as UserRole;
     await AppDataSource.manager.save(newUser);
-
-    const profile = new UserProfile();
-    profile.display_name = 'Admin User';
-    profile.user = newUser;
-    await AppDataSource.manager.save(profile);
   })
   .catch((error) => console.log(error));

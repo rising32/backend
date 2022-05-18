@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 
 import { AppDataSource } from '../../data-source';
 import User from '../../entity/User';
-import UserProfile from '../../entity/UserProfile';
 import { UserRole } from '../../lib/consts/role.enum';
 import { CustomError } from '../../lib/utils/response/custom-error/CustomError';
 
@@ -32,14 +31,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       newUser.password = password;
       newUser.hashPassword();
       newUser.phone = phone;
-      newUser.username = username;
+      newUser.display_name = username;
       newUser.role = UserRole.User;
       await AppDataSource.manager.save(newUser);
-
-      const profile = new UserProfile();
-      profile.display_name = 'username';
-      profile.user = newUser;
-      await AppDataSource.manager.save(profile);
 
       res.status(200).json(newUser);
     } catch (err) {

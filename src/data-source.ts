@@ -5,7 +5,6 @@ import 'dotenv/config';
 import Client from './entity/Client';
 import Company from './entity/Company';
 import User from './entity/User';
-import UserProfile from './entity/UserProfile';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
@@ -17,7 +16,7 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   dropSchema: true,
-  entities: [User, UserProfile, Company, Client],
+  entities: [User, Company, Client],
   migrations: [],
   subscribers: [],
 });
