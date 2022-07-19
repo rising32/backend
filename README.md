@@ -1,4 +1,4 @@
-# IDL Management Toolkit Back-end
+# Back-end
 
 ## Environment Variables
 ``` bash
